@@ -4,6 +4,9 @@ Windows service for recording IP camera stream 24/7 in configured chunks and upl
 
 ## Installation
 
-IpCamToAzure.exe /install  
+Just build & copy-paste binaries  
+Change settings in `IpCamToAzure.exe.config`
+Run `IpCamToAzure.exe /install`  
 
-Refer [Atlas documentation](http://atlas.codeplex.com/documentation) for more information
+Refer [Atlas documentation](http://atlas.codeplex.com/documentation) for more installation options or  
+Tweak them in Windows `Services` app
