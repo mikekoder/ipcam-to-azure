@@ -4,6 +4,9 @@ Windows service for recording IP camera stream 24/7 in configured chunks and upl
 
 ## Installation
 
+VLC Player must be installed!  
+  
+
 Just build & copy-paste binaries  
 Change settings in `IpCamToAzure.exe.config`  
 Run `IpCamToAzure.exe /install`  
