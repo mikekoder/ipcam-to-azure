@@ -21,10 +21,11 @@ namespace IpCamToAzure
         {
             duration = int.Parse(ConfigurationManager.AppSettings["Duration"]);
             var source = ConfigurationManager.AppSettings["Source"];
+            var directory = ConfigurationManager.AppSettings["VideoDirectory"];
             var pattern = ConfigurationManager.AppSettings["NamePattern"];
             Task.Factory.StartNew(() =>
             {
-                Record(source, pattern);
+                Record(source, directory, pattern);
             });
 
             startTimer = new Timer(duration * 1000);
@@ -33,14 +34,14 @@ namespace IpCamToAzure
             {
                 Task.Factory.StartNew(() => 
                 {
-                    Record(source, pattern);
+                    Record(source, directory, pattern);
                 });
             };
         }
 
-        private void Record(string source, string pattern)
+        private void Record(string source, string directory, string pattern)
         {
-            var filename = string.Format(pattern, DateTime.Now.ToString("yyyyMMddHHmmss"));
+            var filename = Path.Combine(directory, string.Format(pattern, DateTime.Now.ToString("yyyyMMddHHmmss")));
 
             var opts = $":sout=#std{{access=file,dst='{filename}'}}";
             var player = new VlcMediaPlayer(new DirectoryInfo(ConfigurationManager.AppSettings["VlcDirectory"]), new[] { "--rtsp-tcp" });
